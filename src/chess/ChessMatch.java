@@ -1,6 +1,9 @@
 package chess;
 
+import boardgame.Position;
 import boardgame.Tabuleiro;
+import chess.piece.Rei;
+import chess.piece.Torre;
 
 public class ChessMatch {
 
@@ -8,6 +11,7 @@ public class ChessMatch {
 	
 	public ChessMatch() {
 		tabuleiro = new Tabuleiro(8, 8);
+		SetupInicial();
 	}
 	
 	//Para que o programa reconheça apenas a camada do xadrez e não a do tabuleiro
@@ -19,6 +23,11 @@ public class ChessMatch {
 			}
 		}
 		return mat;
+	}
+	
+	public void SetupInicial() {
+		tabuleiro.LugarPeca(new Torre(tabuleiro, Cores.WHITE), new Position(2, 1));
+		tabuleiro.LugarPeca(new Rei(tabuleiro, Cores.BLACK), new Position(1, 4));
 	}
 
 }
