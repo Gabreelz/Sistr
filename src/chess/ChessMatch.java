@@ -26,8 +26,8 @@ public class ChessMatch {
 	}
 	
 	public void SetupInicial() {
-		tabuleiro.LugarPeca(new Torre(tabuleiro, Cores.WHITE), new Position(2, 1));
-		tabuleiro.LugarPeca(new Rei(tabuleiro, Cores.BLACK), new Position(1, 4));
+		tabuleiro.LugarPeca(new Torre(tabuleiro, Cores.WHITE), new Position(1, 2));
+		tabuleiro.LugarPeca(new Rei(tabuleiro, Cores.BLACK), new Position(2, 2));
 	}
 
 }
