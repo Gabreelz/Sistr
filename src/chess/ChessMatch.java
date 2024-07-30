@@ -25,9 +25,14 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	private void placeNewPiece(char coluna, int linha, Peca_de_Xadrez peca) {
+		tabuleiro.LugarPeca(peca, new ChessPosition(coluna, linha).toPosition());
+	}
+	
 	public void SetupInicial() {
-		tabuleiro.LugarPeca(new Torre(tabuleiro, Cores.WHITE), new Position(1, 2));
-		tabuleiro.LugarPeca(new Rei(tabuleiro, Cores.BLACK), new Position(2, 2));
+		placeNewPiece('a', 1, new Torre(tabuleiro, Cores.WHITE));
+		placeNewPiece('e', 8, new Rei(tabuleiro, Cores.BLACK));
+		placeNewPiece('e', 1, new Rei(tabuleiro, Cores.WHITE));
 	}
 
 }
