@@ -31,8 +31,12 @@ public class ChessMatch {
 	
 	public void SetupInicial() {
 		placeNewPiece('a', 1, new Torre(tabuleiro, Cores.WHITE));
-		placeNewPiece('e', 8, new Rei(tabuleiro, Cores.BLACK));
+		placeNewPiece('h', 1, new Torre(tabuleiro, Cores.WHITE));
 		placeNewPiece('e', 1, new Rei(tabuleiro, Cores.WHITE));
+		
+		placeNewPiece('a', 8, new Torre(tabuleiro, Cores.BLACK));
+		placeNewPiece('h', 8, new Torre(tabuleiro, Cores.BLACK));
+		placeNewPiece('e', 8, new Rei(tabuleiro, Cores.BLACK));
 	}
 
 }
