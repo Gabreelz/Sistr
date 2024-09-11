@@ -1,5 +1,6 @@
 package chess;
 
+import boardgame.Pecas;
 import boardgame.Position;
 import boardgame.Tabuleiro;
 import chess.piece.Rei;
@@ -23,6 +24,32 @@ public class ChessMatch {
 			}
 		}
 		return mat;
+	}
+	
+	//Auxilia a movimentação da peça no tabuleiro. 
+	public Peca_de_Xadrez performChessMove(ChessPosition posicaoOrigem, ChessPosition posicaoMira) {
+		Position origem = posicaoOrigem.toPosition();
+		Position Mira = posicaoMira.toPosition();
+		//Validar se a posição de origem existe.
+		validarOrigemPosicao(origem);
+		Pecas capituraPeca = makeMove(origem, Mira);
+		return (Peca_de_Xadrez)capituraPeca;
+	}
+	
+	public void validarOrigemPosicao(Position position) {
+		if (!tabuleiro.PecaAqui(position)) {
+			throw new ChessException("Aqui não é a peça de origem");
+		}
+	}
+	
+	private Pecas makeMove(Position origem, Position mira) {
+		//Removera a peça do lugar de origem
+		Pecas p = tabuleiro.removepeca(origem);
+		//Captura uma peça; Remove a peça do inimigo
+		Pecas capituraPeca = tabuleiro.removepeca(mira);
+		//Coloca a peça no novo Lugar
+		tabuleiro.LugarPeca(p, mira);
+		return capituraPeca;
 	}
 	
 	private void placeNewPiece(char coluna, int linha, Peca_de_Xadrez peca) {

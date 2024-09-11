@@ -1,6 +1,10 @@
 package application;
 
-import boardgame.Pecas;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import boardgame.BoardException;
+import chess.ChessPosition;
 import chess.Cores;
 import chess.Peca_de_Xadrez;
 
@@ -25,6 +29,18 @@ public class UI {
 	public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+	
+	public static ChessPosition leituraPosition(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			char coluna = s.charAt(0);
+			int linha = Integer.parseInt(s.substring(1));
+			return new ChessPosition(coluna, linha);
+			}
+		catch (RuntimeException e) {
+			throw new InputMismatchException("Error na leitura da Posição. Valido apenas do a1 ao h8");
+		}
+	}
 
 	public static void printBoard(Peca_de_Xadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
@@ -35,12 +51,12 @@ public class UI {
 			System.out.println();
 			// quebra de linha
 		}
-		System.out.println("  A B C D E F G H");
-	}
+		System.out.println("  A  B C  D E  F G  H");
+	} 
 
 	public static void printPiece(Peca_de_Xadrez peca) {
 		if (peca == null) {
-			System.out.print("-");
+			System.out.print("▭");
 		} else {
 			//Cores para as peças
 			if (peca.getCor() == Cores.WHITE) {

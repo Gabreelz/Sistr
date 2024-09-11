@@ -46,6 +46,22 @@ public class Tabuleiro {
 		peca.posicao = position;
 	}
 	
+	public Pecas removepeca(Position position) {
+		//caso a posição não exista
+		if (!posicaoExists(position)) {
+			throw new BoardException("Posição não está no tabuleiro");
+		}
+		if (pecas(position) == null) {
+			return null;
+		}
+		//Quando a peça for pega, ela não tem mais posição no tabuleiro (retirada)
+		Pecas aux = pecas(position);
+		aux.posicao = null;
+		//Devolve o valor nulo para o local que a peça foi pega
+		pecas[position.getLinha()][position.getColuna()] = null;
+		return aux;
+	}
+	
 	private boolean posicaoExists(int linha, int coluna) {
 	    return linha >= 0 && linha < this.linha && coluna >= 0 && coluna < this.coluna;
 	}
