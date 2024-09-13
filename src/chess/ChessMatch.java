@@ -40,6 +40,9 @@ public class ChessMatch {
 		if (!tabuleiro.PecaAqui(position)) {
 			throw new ChessException("Aqui não é a peça de origem");
 		}
+		if (!tabuleiro.pecas(position).isThereAnyPossibleMove()) {
+			throw new ChessException("Não é uma movimentação possivel");
+		}
 	}
 	
 	private Pecas makeMove(Position origem, Position mira) {
